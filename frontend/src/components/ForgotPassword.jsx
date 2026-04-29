@@ -15,7 +15,7 @@ export default function ForgotPassword() {
 
     try {
       setLoading(true);
-      await API.post("/auth/forgot", { email });
+      await API.post("/auth/forgot-password", { email });
       setMessage("Reset link sent to email");
     } catch {
       setError("Failed to send email");

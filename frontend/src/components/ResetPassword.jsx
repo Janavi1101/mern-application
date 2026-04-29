@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { useParams, useNavigate } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import API from "../api/axios";
 import "../clean.css";
 import Alert from "../components/Alert";
@@ -10,20 +10,34 @@ export default function ResetPassword() {
   const { token } = useParams();
 
   const [password, setPassword] = useState("");
+  const [confirm, setConfirm] = useState("");
 
-  const { loading, setLoading, error, setError, message, setMessage } = useUI();
+  const ui = useUI();
 
   const handleReset = async () => {
-    if (!password) return setError("Enter password");
+    if (!password || !confirm) {
+      return ui.setError("All fields required");
+    }
+
+    if (password !== confirm) {
+      return ui.setError("Passwords do not match");
+    }
 
     try {
-      setLoading(true);
-      await API.post(`/auth/reset/${token}`, { password });
-      setMessage("Password reset successful");
-    } catch {
-      setError("Reset failed or Link Expired");
+      ui.setLoading(true);
+
+      await API.post("/auth/reset-password", {
+        token,
+        password
+      });
+
+      ui.setMessage("Password reset successful");
+      ui.setError("");
+
+    } catch (err) {
+      ui.setError("Reset failed or link expired");
     } finally {
-      setLoading(false);
+      ui.setLoading(false);
     }
   };
 
@@ -33,30 +47,26 @@ export default function ResetPassword() {
 
         <h2 className="title">Reset Password</h2>
 
-        {msg && <p style={{color:"red", fontSize:"13px"}}>{msg}</p>}
-
-	<label> Enter New Password:</label>
+        <label>New Password</label>
         <input
           type="password"
           className="input"
-          placeholder="New Password"
-          onChange={(e)=>setPassword(e.target.value)}
+          onChange={(e) => setPassword(e.target.value)}
         />
 
-	<label>Confirm Password:</label>
+        <label>Confirm Password</label>
         <input
           type="password"
           className="input"
-          placeholder="Confirm Password"
-          onChange={(e)=>setConfirm(e.target.value)}
+          onChange={(e) => setConfirm(e.target.value)}
         />
 
-        <button className="btn" onClick={handleReset}>
-          Reset Password
+        <button className="btn" onClick={handleReset} disabled={ui.loading}>
+          {ui.loading ? <Loader /> : "Reset Password"}
         </button>
 
- <Alert type="error" message={error} />
-        <Alert type="success" message={message} />
+        <Alert type="error" message={ui.error} />
+        <Alert type="success" message={ui.message} />
 
       </div>
     </div>
