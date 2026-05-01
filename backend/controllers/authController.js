@@ -31,7 +31,7 @@ exports.register = async (req, res) => {
     const hash = await bcrypt.hash(password, 10);
 
     await db.query(
-      "INSERT INTO users (name,email,phone,password,) VALUES (?,?,?,?)",
+      "INSERT INTO users (name,email,phone,password) VALUES (?,?,?,?)",
       [name, email, phone, hash]
     );
 

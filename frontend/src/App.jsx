@@ -12,24 +12,21 @@ import PublicRoute from "./components/PublicRoute";
 function App() {
   return (
     <HashRouter>
-      <Routes>
+  <Routes>
 
-        <Route path="/" element={<PublicRoute><Login /></PublicRoute>}/>
+    <Route path="/" element={<Navigate to="/login" />} />
 
-        <Route path="/login" element={<PublicRoute><Login /></PublicRoute>} />
+    <Route path="/login" element={<PublicRoute><Login /></PublicRoute>} />
+    <Route path="/register" element={<PublicRoute><Register /></PublicRoute>} />
+    <Route path="/forgot" element={<PublicRoute><ForgotPassword /></PublicRoute>} />
+    <Route path="/reset/:token" element={<PublicRoute><ResetPassword /></PublicRoute>} />
 
-        <Route path="/register" element={<PublicRoute><Register /></PublicRoute>} />
+    <Route path="/dashboard" element={<ProtectedRoute><Dashboard /></ProtectedRoute>} />
 
-        <Route path="/forgot" element={<PublicRoute><ForgotPassword /></PublicRoute>} />
+    <Route path="*" element={<Navigate to="/login" />} />
 
-        <Route path="/reset/:token" element={<PublicRoute><ResetPassword /></PublicRoute>} />
-
-        <Route path="/dashboard" element={<ProtectedRoute><Dashboard /></ProtectedRoute>} />
-
-        <Route path="*" element={<Navigate to="/login" />} />
-
-      </Routes>
-    </HashRouter>
+  </Routes>
+</HashRouter>
   );
 }
 
