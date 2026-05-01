@@ -52,7 +52,7 @@ export default function Dashboard() {
   const logout = () => {
     localStorage.clear();
     sessionStorage.clear();
-    window.location.href = "/login";
+    window.location.href = "/mern-application/#/login";
   };
 
   const stats = {

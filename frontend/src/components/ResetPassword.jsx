@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { useParams } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 import API from "../api/axios";
 import "../clean.css";
 import Alert from "../components/Alert";
@@ -8,6 +8,7 @@ import useUI from "../components/useUI";
 
 export default function ResetPassword() {
   const { token } = useParams();
+  const navigate = useNavigate();
 
   const [password, setPassword] = useState("");
   const [confirm, setConfirm] = useState("");
@@ -15,8 +16,13 @@ export default function ResetPassword() {
   const ui = useUI();
 
   const handleReset = async () => {
+    // ✅ Validation
     if (!password || !confirm) {
       return ui.setError("All fields required");
+    }
+
+    if (password.length < 6) {
+      return ui.setError("Password must be at least 6 characters");
     }
 
     if (password !== confirm) {
@@ -28,11 +34,16 @@ export default function ResetPassword() {
 
       await API.post("/auth/reset-password", {
         token,
-        password
+        password,
       });
 
-      ui.setMessage("Password reset successful");
+      ui.setMessage("Password reset successful! Redirecting...");
       ui.setError("");
+
+      // ✅ Redirect after 2 seconds
+      setTimeout(() => {
+        navigate("/login");
+      }, 2000);
 
     } catch (err) {
       ui.setError("Reset failed or link expired");
@@ -46,25 +57,38 @@ export default function ResetPassword() {
       <div className="card">
 
         <h2 className="title">Reset Password</h2>
+        <p className="subtitle">Enter your new password</p>
 
+        {/* Password */}
         <label>New Password</label>
         <input
           type="password"
           className="input"
+          placeholder="Enter new password"
+          value={password}
           onChange={(e) => setPassword(e.target.value)}
         />
 
+        {/* Confirm Password */}
         <label>Confirm Password</label>
         <input
           type="password"
           className="input"
+          placeholder="Confirm password"
+          value={confirm}
           onChange={(e) => setConfirm(e.target.value)}
         />
 
-        <button className="btn" onClick={handleReset} disabled={ui.loading}>
+        {/* Button */}
+        <button
+          className="btn"
+          onClick={handleReset}
+          disabled={ui.loading}
+        >
           {ui.loading ? <Loader /> : "Reset Password"}
         </button>
 
+        {/* Alerts */}
         <Alert type="error" message={ui.error} />
         <Alert type="success" message={ui.message} />
 
