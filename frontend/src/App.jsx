@@ -14,7 +14,7 @@ function App() {
     <HashRouter>
       <Routes>
 
-        <Route path="/" element={<Navigate to="/login" />} />
+        <Route path="/" element={<PublicRoute><Login /></PublicRoute>}/>
 
         <Route path="/login" element={<PublicRoute><Login /></PublicRoute>} />
 
