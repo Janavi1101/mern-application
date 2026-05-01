@@ -3,8 +3,8 @@ import react from "@vitejs/plugin-react";
 
 export default defineConfig({
   plugins: [react()],
-  base: "/", 
+  base: "/mern-application/", 
   build: {
-    outDir: "dist", 
+    outDir: "dist",
   },
 });
