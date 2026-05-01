@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 27, 2026 at 05:59 PM
+-- Generation Time: May 01, 2026 at 05:32 PM
 -- Server version: 9.1.0
 -- PHP Version: 8.0.30
 
@@ -42,8 +42,10 @@ CREATE TABLE `items` (
 --
 
 INSERT INTO `items` (`id`, `user_id`, `title`, `description`, `status`, `created_at`, `updated_at`) VALUES
-(2, 2, 'Java', 'Project', 'completed', '2026-04-26 16:38:46.482959', '2026-04-27 14:22:38.504947'),
-(3, 2, 'Internship project', 'Registration page', 'pending', '2026-04-26 16:54:21.602241', '2026-04-27 14:22:27.726527');
+(3, 2, 'Internship project', 'Registration page', 'pending', '2026-04-26 16:54:21.602241', '2026-04-27 14:22:27.726527'),
+(4, 5, NULL, NULL, NULL, '2026-04-27 16:19:24.416420', '2026-04-27 16:19:24.416420'),
+(6, 2, 'Data Analysis', 'Assignment', 'active', '2026-04-28 16:02:14.581762', '2026-04-28 16:02:14.581762'),
+(7, 8, 'Java', 'Assignment', 'active', '2026-04-29 17:09:54.016784', '2026-04-29 17:09:54.016784');
 
 -- --------------------------------------------------------
 
@@ -68,10 +70,14 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `name`, `email`, `phone`, `password`, `reset_token`, `reset_token_expiry`, `created_at`, `updated_at`) VALUES
-(1, 'Janavi H Gowda', 'janavihgowda.brigade@gmail.com', NULL, '$2b$10$t/FiVnFWLToOxinuBkYth./GNVHhNuseQAtRN.GsTWmq5Srec5L7G', NULL, NULL, '2026-04-13 12:07:37', '2026-04-26 16:15:32.859100'),
-(2, 'Janavi', 'janavi@gmail.com', '9876543210', '$2b$10$716KxawAYiYLKZe/ZZjLhekbbae6IZ7YPJCiGWhK0suFAm65CRSa6', NULL, NULL, '2026-04-26 13:24:49', '2026-04-27 14:00:55.287683'),
+(1, 'Janavi H Gowda', 'janavihgowda.brigade@gmail.com', NULL, '$2b$10$/0WAViGcj5.UMnD4Wd1z5OQlpKABdf.ksB9w4IFe7WYu8d/hU938e', '2581f022c3af475e1a22a0c51e39a9b176855655512519e26a6755827cbcda84', '2026-05-01 21:03:12', '2026-04-13 12:07:37', '2026-05-01 15:23:11.965681'),
+(2, 'Janavi', 'janavi@gmail.com', '9876543210', '$2b$10$vuXufgoH85quKZsUsfLuoOJiRljXvbQcwyFxRWWBhBfUZWQ3/84Lq', NULL, NULL, '2026-04-26 13:24:49', '2026-05-01 15:22:57.795199'),
 (3, 'Lohith', 'lohith@gmail.com', '7586256961', '$2b$10$17wdeJl4h64Y8k9DymI9mefYAJxir61vWL0bdu311cAOcHi7KFLZS', NULL, NULL, '2026-04-26 15:40:11', '2026-04-26 15:43:08.483136'),
-(4, 'Lavanya', 'lavanya@gmail.com', '8428155555', '$2b$10$bql4hbN88usIsE9DHIKumOv.hUAsDvHSY7xB2j6j9uPb4tfAPD95m', NULL, NULL, '2026-04-27 14:43:25', '2026-04-27 14:43:25.719035');
+(4, 'Lavanya', 'lavanya@gmail.com', '8428155555', '$2b$10$bql4hbN88usIsE9DHIKumOv.hUAsDvHSY7xB2j6j9uPb4tfAPD95m', NULL, NULL, '2026-04-27 14:43:25', '2026-04-27 14:43:25.719035'),
+(5, 'Khushi', 'khushi@example.com', '9876543210', '$2b$10$0mRp/3NRO9tiveiT5kk5beMEdJN86VMQ/H5yBXY/20Gw0YlB1H05i', NULL, NULL, '2026-04-27 16:04:36', '2026-04-27 16:15:56.746145'),
+(6, 'Sneha', 'sneha@gmail.com', '7586941236', '$2b$10$V9QqXNVujDPm7pNa0f01hu3ojM1gZGsMcQEq886jmMWP7z6KLwFr.', NULL, NULL, '2026-04-28 15:59:09', '2026-04-28 15:59:09.003016'),
+(7, 'Neha', 'neha@gmail.com', '8596321478', '$2b$10$5pGs7qlPpSFUSQkfszuTxu89G7jHtZkA9rl8R3jXqVmznyhSOL3gq', NULL, NULL, '2026-04-28 15:59:56', '2026-04-28 15:59:56.613836'),
+(8, 'Lekhan', 'lekhan@gmail.com', '7485961235', '$2b$10$mhb3rR/Sd.aX.DIfv11LK.9Tqo9Vaw9Zq7nQP.bRdmtC8gsuIajiC', NULL, NULL, '2026-04-29 17:09:19', '2026-04-29 17:09:19.483485');
 
 --
 -- Indexes for dumped tables
@@ -99,13 +105,13 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `items`
 --
 ALTER TABLE `items`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- Constraints for dumped tables
